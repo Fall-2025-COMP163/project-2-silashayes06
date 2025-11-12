@@ -185,6 +185,7 @@ class Mage(Player):
     """
     
     def __init__(self, name):
+        super().(name, "Mage", 80, 4, 12)
         """
         Create a mage with appropriate stats.
         Mages should have: low health, low strength, high magic
@@ -194,6 +195,8 @@ class Mage(Player):
         pass
         
     def attack(self, target):
+        damage = self.magic
+        print(f"{self.name} casts a magic spell on {target.name} for {damage} damage!")
         """
         Override the basic attack to make it magic-based.
         Mages should use magic for damage instead of strength.
@@ -203,6 +206,8 @@ class Mage(Player):
         pass
         
     def fireball(self, target):
+        damage = self.magic * 2
+        print(f"{self.name} launches FIREBALL at {target.name} for {damage} damage!")
         """
         Special mage ability - a powerful magical attack.
         """
@@ -217,6 +222,7 @@ class Rogue(Player):
     """
     
     def __init__(self, name):
+        super().__init(name, "Rogue", 90, 7, 7)
         """
         Create a rogue with appropriate stats.
         Rogues should have: medium health, medium strength, medium magic
@@ -226,6 +232,13 @@ class Rogue(Player):
         pass
         
     def attack(self, target):
+        crit = random.randint(1,10) <= 3
+        damage = self.strength * (2 if crit else 1)
+        if crit:
+            print(f"{self.name} lands a CRITICAL HIT on {target.name} for {damage} damage!")
+        else:
+            print(f"{self.name} strikes {target.name} for {damage} damage!")
+            
         """
         Override the basic attack to make it rogue-specific.
         Rogues should have a chance for extra damage (critical hits).
