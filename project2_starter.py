@@ -158,6 +158,7 @@ class Warrior(Player):
     def attack(self, target):
         damage = self.strength + 5 
         print(f"{self.name} swings a Greatsword at {target.name} for {damage} damage!")
+        target.take_damage(damage)
         
         """
         Override the basic attack to make it warrior-specific.
@@ -171,6 +172,7 @@ class Warrior(Player):
     def power_strike(self, target):
         damage = self.strength * 2
         print(f"{self.name} unleashes POWER STRIKE on {target.name} for {damage} damage!")
+        target.take_damage(damage)
         """
         Special warrior ability - a powerful attack that does extra damage.
         """
@@ -197,6 +199,7 @@ class Mage(Player):
     def attack(self, target):
         damage = self.magic
         print(f"{self.name} casts a magic spell on {target.name} for {damage} damage!")
+        target.take_damage(damage)
         """
         Override the basic attack to make it magic-based.
         Mages should use magic for damage instead of strength.
@@ -208,6 +211,7 @@ class Mage(Player):
     def fireball(self, target):
         damage = self.magic * 2
         print(f"{self.name} launches FIREBALL at {target.name} for {damage} damage!")
+        target.take_damage(damage)
         """
         Special mage ability - a powerful magical attack.
         """
@@ -238,6 +242,7 @@ class Rogue(Player):
             print(f"{self.name} lands a CRITICAL HIT on {target.name} for {damage} damage!")
         else:
             print(f"{self.name} strikes {target.name} for {damage} damage!")
+            target.take_damage(damage)
             
         """
         Override the basic attack to make it rogue-specific.
@@ -249,6 +254,10 @@ class Rogue(Player):
         pass
         
     def sneak_attack(self, target):
+        damage = self.strength * 2.5
+        print(f"{self.name} performs a sneak attack on {target.name} for {damage} damage!")
+        target.take_damage(damage)
+        
         """
         Special rogue ability - guaranteed critical hit.
         """
@@ -263,6 +272,8 @@ class Weapon:
     """
     
     def __init__(self, name, damage_bonus):
+        self.name = name
+        self.damage_bonus = damage_bonus
         """
         Create a weapon with a name and damage bonus.
         """
@@ -270,6 +281,7 @@ class Weapon:
         pass
         
     def display_info(self):
+        print(f"Weapon: {self.name} | Damage bonus: {self.damage_bonus}")
         """
         Display information about this weapon.
         """
@@ -282,6 +294,43 @@ class Weapon:
 
 if __name__ == "__main__":
     print("=== CHARACTER ABILITIES SHOWCASE ===")
+    warrior = Warrior("Sir Galahad")
+    mage = Mage("Merlin")
+    rogue = Rogue("Robin Hood")
+    
+    print("\n📊 Character Stats:")
+    warrior.display_stats()
+    mage.display_stats()
+    rogue.display_stats()
+
+    print("\n⚔️ Testing Polymorphism (same attack method, different behavior):")
+    dummy_target = Character("Target Dummy", 100, 0, 0)
+    for character in [warrior, mage, rogue]:
+        print(f"\n{character.name} attacks the dummy:")
+        character.attack(dummy_target)
+        dummy_target.health = 100
+
+    print("\n✨ Testing Special Abilities:")
+    target1 = Character("Enemy1", 50, 0, 0)
+    target2 = Character("Enemy2", 50, 0, 0)
+    target3 = Character("Enemy3", 50, 0, 0)
+
+    warrior.power_strike(target1)
+    mage.fireball(target2)
+    rogue.sneak_attack(target3)
+
+    print("\n🗡️ Testing Weapon Composition:")
+    sword = Weapon("Iron Sword", 10)
+    staff = Weapon("Magic Staff", 15)
+    dagger = Weapon("Steel Dagger", 8)
+
+    sword.display_info()
+    staff.display_info()
+    dagger.display_info()
+
+    print("\n⚔️ Testing Battle System:")
+    battle = SimpleBattle(warrior, mage)
+    battle.fight()
     print("Testing inheritance, polymorphism, and method overriding")
     print("=" * 50)
     
