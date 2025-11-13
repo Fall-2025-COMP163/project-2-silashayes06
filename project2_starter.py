@@ -10,7 +10,7 @@ Example: AI helped with inheritance structure and method overriding concepts
 # ============================================================================
 # PROVIDED BATTLE SYSTEM (DO NOT MODIFY)
 # ============================================================================
-
+import random
 class SimpleBattle:
     """
     Simple battle system provided for you to test your characters.
