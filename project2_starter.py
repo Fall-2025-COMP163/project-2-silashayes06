@@ -10,7 +10,7 @@ Example: AI helped with inheritance structure and method overriding concepts
 # ============================================================================
 # PROVIDED BATTLE SYSTEM (DO NOT MODIFY)
 # ============================================================================
-import random
+import random # having this at the start of the code sets the stage for the rogue's crit chance later in the code.
 class SimpleBattle:
     """
     Simple battle system provided for you to test your characters.
