@@ -187,7 +187,7 @@ class Mage(Player):
     """
     
     def __init__(self, name):
-        super().(name, "Mage", 80, 4, 12)
+        super().__init__(name, "Mage", 80, 4, 12)
         """
         Create a mage with appropriate stats.
         Mages should have: low health, low strength, high magic
@@ -226,7 +226,7 @@ class Rogue(Player):
     """
     
     def __init__(self, name):
-        super().__init(name, "Rogue", 90, 7, 7)
+        super().__init__(name, "Rogue", 90, 7, 7)
         """
         Create a rogue with appropriate stats.
         Rogues should have: medium health, medium strength, medium magic
