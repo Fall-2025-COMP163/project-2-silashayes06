@@ -237,12 +237,12 @@ class Rogue(Player):
         
     def attack(self, target):
         crit = random.randint(1,10) <= 3
-        damage = self.strength * (2 if crit else 1)
+        damage = self.strength * 1.2 if crit else self.strength
         if crit:
             print(f"{self.name} lands a CRITICAL HIT on {target.name} for {damage} damage!")
         else:
             print(f"{self.name} strikes {target.name} for {damage} damage!")
-            target.take_damage(damage)
+        target.take_damage(damage)
             
         """
         Override the basic attack to make it rogue-specific.
