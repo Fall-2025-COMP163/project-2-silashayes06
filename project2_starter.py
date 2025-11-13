@@ -53,14 +53,14 @@ class SimpleBattle:
 # YOUR CLASSES TO IMPLEMENT (6 CLASSES TOTAL)
 # ============================================================================
 
-class Character:
+class Character: # Base/starting class 
     
     """
     Base class for all characters.
     This is the top of our inheritance hierarchy.
     """
     
-    def __init__(self, name, health, strength, magic):
+    def __init__(self, name, health, strength, magic): # Basic stats
         self.name = name
         self.health = health
         self.strength = strength
@@ -70,7 +70,7 @@ class Character:
         # These should be stored as instance variables
         
         
-    def attack(self, target):
+    def attack(self, target): # Basic Attacks
         damage = self.strength
         print(f"{self.name} attacks {target.name} for {damage} damage!")
         target.take_damage(damage)
@@ -86,7 +86,7 @@ class Character:
         # Use target.take_damage(damage) to apply damage
         
         
-    def take_damage(self, damage):
+    def take_damage(self, damage): #Base function for taking damage and the stats following the damage dealt
         self.health = max(0, self.health - damage)
         print(f"{self.name} takes {damage} damage. Health now: {self.health}")
         """
@@ -98,7 +98,7 @@ class Character:
         # Make sure health doesn't go below 0
         
         
-    def display_stats(self):
+    def display_stats(self): # Prints stats after damage
         print(f"Name: {self.name} | Health: {self.health} | Strength: {self.strength} | Magic: {self.magic}")
         """
         Prints the character's current stats in a nice format.
@@ -107,7 +107,7 @@ class Character:
         # Make it look nice with formatting
         
 
-class Player(Character):
+class Player(Character): # Base/starting class for characters 
     """
     Base class for player characters.
     Inherits from Character and adds player-specific features.
@@ -139,7 +139,7 @@ class Player(Character):
         # TODO: Then print additional player info like class and level
         
 
-class Warrior(Player):
+class Warrior(Player): #First character class inherited from Player, has high health and strength
     """
     Warrior class - strong physical fighter.
     Inherits from Player.
@@ -180,14 +180,14 @@ class Warrior(Player):
         # Should do significantly more damage than regular attack
         
 
-class Mage(Player):
+class Mage(Player): # Second class inherited from Player with high magic 
     """
     Mage class - magical spellcaster.
     Inherits from Player.
     """
     
     def __init__(self, name):
-        super().__init__(name, "Mage", 80, 8, 20)
+        super().__init__(name, "Mage", 80, 8, 20) # super().__init__ manages the hierarchy of classes after the base class, Player
         """
         Create a mage with appropriate stats.
         Mages should have: low health, low strength, high magic
