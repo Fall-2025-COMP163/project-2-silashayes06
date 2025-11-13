@@ -115,7 +115,7 @@ class Player(Character):
     
     def __init__(self, name, character_class, health, strength, magic):
         super().__init__(name, health, strength, magic)
-        self.character_clas = character_class
+        self.character_class = character_class
         self.level = 1
         self.experience = 0
         
@@ -187,7 +187,7 @@ class Mage(Player):
     """
     
     def __init__(self, name):
-        super().__init__(name, "Mage", 80, 4, 12)
+        super().__init__(name, "Mage", 80, 8, 20)
         """
         Create a mage with appropriate stats.
         Mages should have: low health, low strength, high magic
